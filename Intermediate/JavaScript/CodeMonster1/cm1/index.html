@@ -26,6 +26,7 @@
       //This is the start of our draw function that gets called when you click the 'Draw!' 
       function draw() {
         
+         var text = document.getElementById("myText");
          //Here we ask the browser to give is a 'handle' to the canvas element so that we can interact with it.
          //We use the variable 'canvas' to hold that handle.
          var canvas = document.getElementById("myCanvas");   
@@ -34,12 +35,23 @@
          var c = canvas.getContext("2d");
 
          //This is a variable or 'bucket' to hold the number 80.
-         var size = 80; // Slashy comments can go at the end of a line of code.
+         var size = 160; // Slashy comments can go at the end of a line of code.
 
          c.fillStyle ="rgb(0, 255, 0)";  //Here we tell the 'context' what color to use in levels of red, green and blue  
          c.fillRect(20, 20, size, size);  //Here we tell the context to draw a filled in rectangle starting at x,y of 20,20 with a height and width of 'size' pixels
          c.fillStyle ="red"; //Here we tell the context to next use the color red.
-         c.fillRect(80, 80, size, size); //And draw a filled in rectangle at position 80,80
+         c.fillRect(80, 80, size, size*2); //And draw a filled in rectangle at position 80,80
+         
+         var txt = document.getElementById('myText').value;
+        //How do I draw the text at a 45 degree angle? 
+        //Here.....
+        c.rotate(45*Math.PI/180)  //<-- now what
+        
+         c.font = "30px Arial"  
+         c.fillStyle = 'black'
+         c.fillText(txt,100,100)
+         
+         
          
         //Can you tell the context to draw other shapes using other colors?
         //Check out http://www.w3schools.com/html/html5_canvas.asp
@@ -85,6 +97,7 @@
     <!-- In this case, we tell the browser to execute the draw() javascriipt function that we defined above inside the <script> tag. -->
     <p><button onclick="draw()">Draw!</button></p> 
     
+    <p><input type="text" id="myText"/></p>
     <!-- This is our drawing canvas.  We give it the id or myCanvas so the draw() function can find it. -->
     <!-- Can you tell what the other attributes do? -->
     <canvas id="myCanvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
